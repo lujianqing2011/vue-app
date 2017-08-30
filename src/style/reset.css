@@ -1,0 +1,135 @@
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, input, button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: normal;
+    vertical-align: baseline;
+    outline: none;
+    font-style: normal;
+    user-select: none;                              /* 禁止用户选择和复制内容 */
+    -webkit-touch-callout: none;                    /* 防止用户复制和保存图片 */
+    -webkit-text-size-adjust: none;                 /* 禁用Webkit内核浏览器的文字大小调整 */ 
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, menu, nav, section {
+    display: block;
+}
+
+body {
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font: 16px/1.5 '微软雅黑',Helvetica,Tahoma,Arial,'华文细黑',sans-serif;
+    overflow-x: hidden
+}
+
+body {
+    line-height: 1;
+    font: 16px/1.5 "Myriad Set Pro","Lucida Grande","Helvetica Neue",Helvetica,Arial,Verdana,sans-serif,'Microsoft Yahei',Simsun;
+    color: #333;
+    transition: all 0.5s;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* custom */
+a {
+    color: #7e8c8d;
+    text-decoration: none;
+    -webkit-backface-visibility: hidden;
+}
+
+li {
+    list-style: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    min-width: 320px;
+}
+
+img {
+    vertical-align: middle;
+    border: 0 none;
+}
+#app {
+    height: 100%;
+}
+.clear {
+    clear: both;
+}
+.clearfix:after {
+    clear: both;
+    content: '.';
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+.clearfix{
+    zoom: 1;
+}
+a:hover{
+    text-decoration: none;
+    color:#ED0909;
+}
+.dis_flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.dis_flex .height_1 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 1;
+  flex: 0 0 1;
+  width: 1px;
+  background: #eee;
+}
+.flex_1 {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.width_1 {
+  width: 100%;
+  height: 1px;
+  line-height: 0;
+  position: relative;
+  z-index: 10;
+  background: #eee;
+}
+
+
