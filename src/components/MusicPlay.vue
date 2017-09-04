@@ -85,13 +85,20 @@ export default{
         this.scheduleMusic();
         this.currentTime = 0;
         this.songList;
-        this.$emit('title',this.music.title);
+        this.$emit('changeNavState',false);
+        this.$emit('titleState',this.music.title);
+        
     },
     //完成挂载执行
     mounted() {
         this.$nextTick(() => {
             this.showBg = true
         })
+    },
+    watch: {
+        "music"() {
+            this.$emit('titleState',this.music.title);
+        }
     },
     //事件
     methods: {
@@ -413,7 +420,7 @@ $ppr:14px/0.28rem;
         position: fixed;
         left: 0;
         bottom: 0;
-        padding: 20px/$ppr 10px/$ppr 10px/$ppr;
+        padding: 20px/$ppr 10px/$ppr;
         //background: linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,0));
         background: linear-gradient(to top,rgba(255, 0, 0, 0.7),rgba(0,0,0,0));
         box-sizing: border-box;

@@ -4,7 +4,7 @@ import qs from 'qs'
 
 // axios 配置
 axios.defaults.timeout = 10000;
-axios.defaults.baseURL = 'http://localhost:7878/api';
+axios.defaults.baseURL = 'http://localhost:3000/';
 
 //POST传参序列化
 axios.interceptors.request.use((config) => {
@@ -14,6 +14,18 @@ axios.interceptors.request.use((config) => {
     return config;
 }, (error) => {
     alert("错误的传参")
+    return Promise.reject(error);
+});
+
+//返回状态判断
+axios.interceptors.response.use((res) =>{
+    if(!res.data.success){
+        // _.toast(res.data.msg);
+        return Promise.reject(res);
+    }
+    return res;
+}, (error) => {
+    console.log("网络异常");
     return Promise.reject(error);
 });
 
@@ -63,6 +75,7 @@ export default {
     }
 }
 
+//解决跨域
 global.bird = "https://bird.ioliu.cn/v1/?url=";
 
 //外网测试环境 api代理

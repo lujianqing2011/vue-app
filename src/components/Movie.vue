@@ -24,7 +24,7 @@ export default{
     data(){
         return{
             movieList: [],
-            pageMore: 0
+            pageMore: 10
         }
     },
     //计算
@@ -48,6 +48,7 @@ export default{
                 this.$nextTick(() => {
                     this.$emit('loading',false);
                 })
+                console.log(0,res)
                 this.movieList = res
             })
         },

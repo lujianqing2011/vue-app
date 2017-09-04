@@ -34,10 +34,11 @@ export default{
     },
     activated() {
         this.getMusic();
+        this.$emit('changeNavState',true);
+        this.$emit('titleState',"音乐");
     },
     //完成挂载执行
     mounted() {
-        this.getMusic();
     },
     //事件
     methods: {

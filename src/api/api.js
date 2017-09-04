@@ -16,7 +16,16 @@ export default {
      * @returns 
      */
     joke(params) {
-        return fetch.fetchPost('joke/index', params);
+        return fetch.fetchGet('/joke', params);
+    },
+
+    /**
+     * 搞笑图片
+     * @param {oeject} params 
+     * @returns 
+     */
+    joke_pic(params) {
+        return fetch.fetchGet('/joke_pic', params);
     },
 
     /**
@@ -25,7 +34,7 @@ export default {
      * @returns 
      */
     new_list(params) {
-        return fetch.fetchGet('News/new_list', params)
+        return fetch.fetchGet('/news_list?type=0&page=10', params)
     },
 
     /**
@@ -53,7 +62,7 @@ export default {
      * @returns 
      */
     video_type(params) {
-        return fetch.fetchGet('Video/video_type', params)
+        return fetch.fetchGet('/video_list', params)
     },
 
     /**
@@ -61,8 +70,8 @@ export default {
      * @param {any} params 
      * @returns 
      */
-    photo() {
-        return fetch.fetchGet('Picture/hua_ban');
+    photo(params) {
+        return fetch.fetchGet('/huaban', params);
     },
 
     /**
@@ -97,5 +106,12 @@ export default {
      */
     zhihu_daily_info(params) {
         return fetch.fetchGet('/Zhihu/news', params);
+    },
+
+    /**
+     * 前端框架排行
+     */
+    weather_forecast(params) {
+        return fetch.fetchGet('/web_frame',params)
     }
 }

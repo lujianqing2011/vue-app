@@ -1,8 +1,9 @@
 <template>
     <section class="music_list_page">
         <ul class="music_title">
-            <li v-for="(item,index) in titleList" :class="{ on:selectIndex === index }" @click="selectType(index)">{{item}}</li>
+            <li v-for="(item,index) in titleList" @click="selectType(index)">{{item}}</li>
         </ul>
+        <div class="slide_on"><div id="slide_id"></div></div>
 
         <section class="music_new" v-if="selectIndex === 0">
             <div class="banner_slide">
@@ -79,6 +80,8 @@ export default{
         this.newMusic();
         this.rankingMusic();
         this.rankingMusic();
+        this.$emit('changeNavState',true);
+        this.$emit('titleState',"音乐");
     },
     //完成挂载执行
     mounted() {
@@ -154,6 +157,9 @@ export default{
         selectType(index) {
             this.selectIndex = index
             this.initData();
+            let el = document.getElementById('slide_id')
+            let W = el.offsetWidth
+            el.style.left = W*index+"px"
         }
     }
 }
@@ -172,11 +178,21 @@ $ppr:14px/0.28rem;
             height: 45px/$ppr;
             line-height: 45px/$ppr;
             text-align: center;
-            margin: 0 10px/$ppr;
             font-size: 18px/$ppr;
-            &.on{
-                border-bottom: 2px solid red;
-            }
+        }
+    }
+    .slide_on{
+        width: 100%;
+        height: 2px;
+        position: relative;
+        #slide_id{
+            width: 33.33%;
+            height: 2px;
+            background-color: red;
+            transition: all 0.3s;
+            position: absolute;
+            left: 0;
+            top: 0;
         }
     }
     .music_new{
@@ -203,7 +219,7 @@ $ppr:14px/0.28rem;
                 &:before{
                     float: right;
                     font-size: 24px/$ppr;
-                    color: rgb(255, 73, 0);
+                    color: rgb(255, 108, 0);
                 }
                 &:last-child{
                     border-bottom: 0;

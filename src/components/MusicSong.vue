@@ -26,7 +26,8 @@ export default{
         }
     },
     activated() {
-        this.getSongList()
+        this.getSongList();
+        this.$emit('changeNavState',true);
     },
     //计算
     computed: {
