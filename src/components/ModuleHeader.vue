@@ -57,8 +57,8 @@ export default{
               { "title":"美图", "icon": require("../assets/icon/icon_mt.png"), "to":"/photo" },
               { "title":"精选", "icon": require("../assets/icon/icon_dz.png"), "to":"/featured" },
               { "title":"电影", "icon": require("../assets/icon/icon_dy.png"), "to":"/movie" },
-              { "title":"框架", "icon": require("../assets/icon/icon_kj.png"), "to":"/webframe" }
-            ],
+              { "title":"机器人", "icon": require("../assets/icon/icon_kj.png"), "to":"/robot" }
+            ]
         }
     },
     //计算
@@ -92,7 +92,7 @@ export default{
 
 <style lang="scss">
 
-$ppr: 14px/0.28rem;
+@import '../style/mixin.scss';
 
 .head {
     .head_top {

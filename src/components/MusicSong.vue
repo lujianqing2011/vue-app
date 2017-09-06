@@ -66,7 +66,7 @@ export default{
 
 <style lang="scss">
 
-$ppr:14px/0.28rem;
+@import '../style/mixin.scss';
 
 .music_song_page{
     .music_song_img{

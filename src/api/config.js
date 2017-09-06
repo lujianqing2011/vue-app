@@ -19,9 +19,10 @@ axios.interceptors.request.use((config) => {
 
 //返回状态判断
 axios.interceptors.response.use((res) =>{
+    console.log("data",res.data)
     if(!res.data.success){
-        // _.toast(res.data.msg);
-        return Promise.reject(res);
+        //console.log(2,res)
+        //return Promise.reject(res);
     }
     return res;
 }, (error) => {

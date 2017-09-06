@@ -145,7 +145,7 @@ export default{
 
 <style lang="scss">
 
-$ppr:14px/0.28rem;
+@import '../style/mixin.scss';
 
 .video_page{
     .video_select{

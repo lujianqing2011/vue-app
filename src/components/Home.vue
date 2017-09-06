@@ -90,17 +90,15 @@ export default {
 
 <style lang="scss">
 
-$ppr:14px/0.28rem;
+@import '../style/mixin.scss';
 
 .home_page {
     .new_type{
         .n_t_box{
             background-color: #F1F1F1;
             padding: 10px/$ppr 0;
-            background-image: url('../assets/new_bg.jpg');
-            background-repeat: no-repeat;
+            @include bis('../assets/new_bg.jpg');
             background-position: center center;
-            background-size: 100% 100%;
             zoom: 1;
             &:after{
                 content: ' ';
@@ -110,14 +108,13 @@ $ppr:14px/0.28rem;
                 clear: both;
             }
             .n_t_list{
+                @include wh(20%, 40px/$ppr);
                 float: left;
-                width: 20%;
                 text-align: center;
-                height: 40px/$ppr;
-                color: rgba(255, 255, 255, 0.87);
                 line-height: 40px/$ppr;
                 transition: all 0.3s;
                 font-size: 14px/$ppr;
+                color: rgba(255, 255, 255, 0.87);
                 &.on{
                     animation: neon6 1s ease-in-out infinite alternate;
                     font-size: 16px/$ppr;

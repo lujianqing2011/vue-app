@@ -10,9 +10,9 @@
             <aside ref="nbaInfo">
                 <div>
                     <div class="seek_team">
-                        <input type="text" name="team" v-model="teamA" placeholder="输入球队名" @input="changeSeekTeam($event)" > 
+                        <input type="text" name="team" v-model="teamA" placeholder="输入球队名" @input="changeSeekTeam($event)" size="5%" > 
                         <i class="vs">VS</i> 
-                        <input type="text" id="team_b" name="team" v-model="teamB" placeholder="输入球队名" @input="seekTeam()" disabled="disabled" >
+                        <input type="text" id="team_b" name="team" v-model="teamB" placeholder="输入球队名" @input="seekTeam()" disabled="disabled" size="5%" >
                     </div>
                     <div class="team_events" v-for="item in teamEvents">
                         <div class="team_info">
@@ -53,12 +53,6 @@ export default{
             selectIndex: 1,
             teamA: "",
             teamB: "勇士",
-            teamBackground: {
-                backgroundImage: "url(" + require("../assets/nba_logo/1.jpg") + ")",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "280% 100%",
-                backgroundPosition: "center center"
-            },
             colorLogo: [ "#dc3d3a","#038235","#bf9656","#c40620","#85153b","#0465b2","#f0b929","#f11749","#2365b1","#d12147","#ffc425","#b91e2e","#efaf2b","#ba3234","#054a13","#00548d","#000000","#e86320","#4465aa","#16619a","#e56121","#d23836","#6d32a6","#c4cbd1","#066fb0","#03481b","#bd1c2c","#b91a2e","#7b96ce","#028ca6" ]
         }
     },
@@ -79,9 +73,6 @@ export default{
     },
     //完成挂载执行
     mounted() {
-        // this.$nextTick(() => {
-        //     this.initScroll();
-        // })  
     },
     //事件
     methods: {
@@ -91,7 +82,7 @@ export default{
             axios.get(bird+url).then((res) => {
                 this.nbaTeamAll = res.data.result.teammatch
                 this.$nextTick(() => {
-                    //this.initScroll()
+                    this.nameScroll()
                 })
             })
         },
@@ -102,13 +93,11 @@ export default{
             this.$emit('loading',true);
             let url = "http://op.juhe.cn/onebox/basketball/team?key=f7462677dcae26d59b12e08c0c237a31&team="+name
             axios.get(bird+url).then((res) => {
-                // this.teamEvents = res.data.result.list
-                //this.teamTitle = res.data.result.title
+                this.teamEvents = res.data.result.list
+                this.teamTitle = res.data.result.title
                 this.$nextTick(() => {
-                    this.teamEvents = res.data.result.list
-                    this.teamTitle = res.data.result.title
                     this.$emit('loading',false);
-                    this.initScroll();
+                    this.contentScroll();
                 })
             })
         },
@@ -119,14 +108,17 @@ export default{
                 this.teamEvents = res.data.result.list
                 this.$nextTick(() => {
                     this.$emit('loading',false);
-                    this.initScroll();
                 })
             })
         },
-        initScroll() {
+        //左边的球队滑动
+        nameScroll() {
             this.leftScroll = new BScroll( this.$refs.nabTitle, {
                 click: true
             })
+        },
+        //右边的球队赛事滑动
+        contentScroll() {
             this.rightScroll = new BScroll( this.$refs.nbaInfo, {
                 click: true
             })
@@ -135,11 +127,11 @@ export default{
         changeSeekTeam(e) {
             const teamB = document.getElementById('team_b');
             if(e.path["0"].value.length >= 2){
+                alert(5)
                 teamB.removeAttribute('disabled')
                 this.seekTeam();
             }else{
                 teamB.setAttribute('disabled', 'disabled')
-                console.log(teamB)
             }
         },
         //执行点击的球队
@@ -159,21 +151,20 @@ export default{
 
 <style lang="scss">
 
-$ppr: 14px/0.28rem;
+@import '../style/mixin.scss';
 
 .nba_page{
     .nba_page_title{
+        @include sc(14px/$ppr, white);
         padding: 0 10px/$ppr;
         height: 40px/$ppr;
         line-height: 40px/$ppr;
         text-align: center;
-        font-size: 14px/$ppr;
         white-space: nowrap;
         text-overflow: ellipsis;
         background-color: rgb(243, 243, 243);
         overflow: hidden;
         transition: all 0.3s;
-        color: white;
     }
     .nba_content{
         position: absolute;
@@ -188,7 +179,6 @@ $ppr: 14px/0.28rem;
             height: 100%;
             box-shadow: 0 0 10px #DADADA;
             border-right: 1px solid #F1F1F1;
-            background-image: url('../assets/nba_logo/2.jpg') no-repeat;
             background-size: 280% 100%;
             background-position: center center;
             transition: all 0.3s;
@@ -211,7 +201,6 @@ $ppr: 14px/0.28rem;
                     background-color: rgba(255, 255, 255, 0.25);
                     margin-bottom: 1px/$ppr;
                     &.on{
-                        //border-radius: 20rem;
                         background-color: rgba(255, 0, 0, 0);
                         box-shadow: 0 0 5px white;
                         color: white;
@@ -222,7 +211,9 @@ $ppr: 14px/0.28rem;
         & aside{
             flex: 2;
             padding: 0 10px/$ppr;
+            width: 100%;
             .seek_team{
+                width: 100%;
                 height: 50px/$ppr;
                 background-color: white;
                 font-size: 0;
@@ -236,6 +227,8 @@ $ppr: 14px/0.28rem;
                 }
                 & input[name="team"]{
                     flex: 1;
+                    //width: 0;
+                    display: inline-block;
                     height: 30px/$ppr;
                     line-height: 30px/$ppr;
                     border: 1px solid #CACACA;
@@ -246,7 +239,8 @@ $ppr: 14px/0.28rem;
                     box-shadow: 0 1px 10px rgba(130, 130, 130, 0.12) inset;
                     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1);
                     &:focus{
-                        border-color: red;
+                        //border-color: red;
+                        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #FF7C7C;
                     }
                 }
             }

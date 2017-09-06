@@ -101,7 +101,6 @@ export default{
                 this.newMusicList = res.data.data;
 
             }.bind(this)).catch(function (error) {
-                    this.$emit('loading',true);
                     console.log(error)
                 })
         },
@@ -115,7 +114,6 @@ export default{
                 this.rankingMusicList = res.data.rank.list
                 //console.log(4,res.data.rank.list)
             }.bind(this)).catch(function (error) {
-                    this.$emit('loading',true);
                     console.log(error)
                 })
         },
@@ -129,7 +127,6 @@ export default{
                 })
                 this.songMusicList = res.data.plist.list.info
             }.bind(this)).catch(function (error) {
-                    this.$emit('loading',true);
                     console.log(error)
                 })
         },
@@ -168,7 +165,7 @@ export default{
 
 <style lang="scss">
 
-$ppr:14px/0.28rem;
+@import '../style/mixin.scss';
 
 .music_list_page{
     .music_title{

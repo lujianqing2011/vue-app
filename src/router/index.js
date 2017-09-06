@@ -12,7 +12,7 @@ import MusicPlay from '../components/MusicPlay'
 import MusicSong from '../components/MusicSong'
 import Photo from '../components/Photo'
 import Featured from '../components/Featured'
-import Webframe from '../components/Webframe'
+import Robot from '../components/Robot'
 import Nba from '../components/Nba'
 
 Vue.use(Router)
@@ -31,7 +31,7 @@ const routes = [
     { path: '/musicsong', component: MusicSong},
     { path: '/photo', component: Photo},
     { path: '/featured', component: Featured},
-    { path: '/webframe', component: Webframe},
+    { path: '/robot', component: Robot},
     { path: '/nba', component: Nba}
 
 ]
